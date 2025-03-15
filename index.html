@@ -3,10 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Art Commissions</title>
+    <title>Art Commissions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        #commission-section {
+            margin-top: 50px;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function showPaymentOptions() {
+            document.getElementById('payment-options').classList.remove('hidden');
+        }
+        function showContact(method) {
+            document.getElementById('contact-info').classList.remove('hidden');
+            document.getElementById('contact-text').innerText = method;
+        }
+    </script>
 </head>
 <body>
-    <h1>Welcome to My Art Commissions Page!</h1>
-    <p>More content coming soon...</p>
+    <h1>Welcome to My Art Commissions!</h1>
+    <p>Scroll down to get a commission</p>
+    
+    <div id="commission-section">
+        <button onclick="showPaymentOptions()">Get Commission</button>
+        
+        <div id="payment-options" class="hidden">
+            <p>Select a payment method:</p>
+            <button onclick="showContact('Email: example@email.com')">Email</button>
+            <button onclick="showContact('Discord: YourDiscord#1234')">Discord</button>
+            <button onclick="showContact('Telegram: @YourTelegram')">Telegram</button>
+            <button onclick="showContact('Messenger: facebook.com/YourProfile')">Messenger</button>
+        </div>
+        
+        <div id="contact-info" class="hidden">
+            <p>Contact me via:</p>
+            <p id="contact-text"></p>
+        </div>
+    </div>
 </body>
 </html>
