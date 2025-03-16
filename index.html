@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Art Commissions</title>
     <style>
+        /* Background Gradient */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
             margin: 0;
-            background-color: #f4f4f4;
-            transition: background-color 0.3s;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            transition: background-color 0.3s, color 0.3s;
         }
 
         /* Smooth Scroll */
@@ -19,21 +20,46 @@
             scroll-behavior: smooth;
         }
 
-        #commission-section {
+        /* Section Styling */
+        .section {
             margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            display: inline-block;
+            width: 80%;
         }
 
+        /* Buttons */
+        button {
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background: #ff758c;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #ff5f6d;
+        }
+
+        /* Hidden Elements */
         .hidden {
             display: none;
         }
 
-        /* Portfolio */
+        /* Portfolio Styling */
         #portfolio {
             display: flex;
             justify-content: center;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 50px;
         }
 
         .artwork {
@@ -41,19 +67,27 @@
             height: 200px;
             object-fit: cover;
             border-radius: 10px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border: 4px solid #ff758c;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .artwork:hover {
+            transform: scale(1.05);
         }
 
         /* Social Media Links */
-        #social-media {
-            margin-top: 20px;
-        }
-
         #social-media a {
             text-decoration: none;
             font-weight: bold;
-            color: #007BFF;
+            color: #ff5f6d;
             margin: 0 10px;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+
+        #social-media a:hover {
+            color: #d84356;
         }
 
         /* Contact Form */
@@ -65,51 +99,90 @@
 
         input, textarea {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             margin: 10px 0;
-            border: 1px solid #ccc;
+            border: 2px solid #ff758c;
             border-radius: 5px;
+            font-size: 16px;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
+        textarea {
+            height: 100px;
         }
 
         /* Dark Mode */
         .dark-mode {
-            background-color: #121212;
+            background: #222;
             color: white;
+        }
+
+        .dark-mode .section {
+            background: rgba(50, 50, 50, 0.8);
+            color: white;
+        }
+
+        .dark-mode button {
+            background: #d84356;
+        }
+
+        .dark-mode button:hover {
+            background: #b71c1c;
+        }
+
+        .dark-mode .artwork {
+            border: 4px solid #d84356;
+        }
+
+        .dark-mode #social-media a {
+            color: #ff9a9e;
+        }
+
+        .dark-mode #social-media a:hover {
+            color: #fad0c4;
         }
     </style>
     <script>
         function showPaymentOptions() {
             document.getElementById('payment-options').classList.remove('hidden');
         }
+
         function showContact(method) {
             document.getElementById('contact-info').classList.remove('hidden');
             document.getElementById('contact-text').innerText = method;
         }
 
-        const toggleButton = document.getElementById("dark-mode-toggle");
-        toggleButton.addEventListener("click", () => {
+        function toggleDarkMode() {
             document.body.classList.toggle("dark-mode");
-        });
+        }
     </script>
 </head>
 <body>
     <h1>Welcome to My Art Commissions!</h1>
     <p>Scroll down to get a commission</p>
-    
-    <div id="commission-section">
+
+    <!-- Portfolio Section -->
+    <div class="section">
+        <h2>My Artwork</h2>
+        <div id="portfolio">
+            <img src="path/to/artwork1.jpg" alt="Art 1" class="artwork">
+            <img src="path/to/artwork2.jpg" alt="Art 2" class="artwork">
+            <img src="path/to/artwork3.jpg" alt="Art 3" class="artwork">
+        </div>
+    </div>
+
+    <!-- Social Media Links -->
+    <div class="section">
+        <h2>Follow Me</h2>
+        <div id="social-media">
+            <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> |
+            <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
+            <a href="https://yourwebsite.com" target="_blank">Website</a>
+        </div>
+    </div>
+
+    <!-- Get Commission Button (Moved to Bottom) -->
+    <div class="section">
+        <h2>Ready to Order a Commission?</h2>
         <button onclick="showPaymentOptions()">Get Commission</button>
         
         <div id="payment-options" class="hidden">
@@ -126,34 +199,18 @@
         </div>
     </div>
 
-    <!-- Portfolio Section -->
-    <h2>My Artwork</h2>
-    <div id="portfolio">
-        <img src="path/to/artwork1.jpg" alt="Art 1" class="artwork">
-        <img src="path/to/artwork2.jpg" alt="Art 2" class="artwork">
-        <img src="path/to/artwork3.jpg" alt="Art 3" class="artwork">
-        <!-- Add more images as needed -->
-    </div>
-
-    <!-- Social Media Links -->
-    <h2>Follow Me</h2>
-    <div id="social-media">
-        <a href="https://instagram.com/yourprofile" target="_blank">Instagram</a> |
-        <a href="https://twitter.com/yourprofile" target="_blank">Twitter</a> |
-        <a href="https://yourwebsite.com" target="_blank">Website</a>
-    </div>
-
     <!-- Contact Form -->
-    <h2>Contact Me</h2>
-    <form id="contact-form">
-        <input type="text" id="name" placeholder="Your Name" required><br>
-        <input type="email" id="email" placeholder="Your Email" required><br>
-        <textarea id="message" placeholder="Your Message" required></textarea><br>
-        <button type="submit">Send Message</button>
-    </form>
+    <div class="section">
+        <h2>Contact Me</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required><br>
+            <input type="email" id="email" placeholder="Your Email" required><br>
+            <textarea id="message" placeholder="Your Message" required></textarea><br>
+            <button type="submit">Send Message</button>
+        </form>
+    </div>
 
     <!-- Dark Mode Toggle -->
-    <button id="dark-mode-toggle">Toggle Dark Mode</button>
-
+    <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
 </body>
 </html>
